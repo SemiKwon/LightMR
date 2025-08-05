@@ -1,0 +1,29 @@
+{
+    "train_batch_size": 2,
+    "train_micro_batch_size_per_gpu": 2,
+    "gradient_accumulation_steps": 1,
+
+    "optimizer": {
+        "type": "AdamW",
+        "params": {
+            "lr": 1e-05,
+            "betas": [0.9, 0.999],
+            "eps": 1e-08,
+            "weight_decay": 0.01
+        }
+    },
+
+    "bf16": { "enabled": true },
+
+    "scheduler": {
+        "type": "WarmupCosineLR",
+        "params": {
+            "warmup_num_steps": 24815,
+            "total_num_steps": 248150
+        }
+    },
+
+    "zero_optimization": { "stage": 0 },
+
+    "gradient_clipping": 1.0
+}
