@@ -139,15 +139,8 @@ class Blip2(nn.Module):
             return outputs
         
 def get_model():
-    bnb_config = BitsAndBytesConfig(
-        load_in_4bit=True,
-        bnb_4bit_use_double_quant=True,
-        bnb_4bit_quant_type="nf4",
-        bnb_4bit_compute_dtype=torch.bfloat16
-    )
     base_model = Blip2ForConditionalGeneration.from_pretrained(
         "Salesforce/blip2-flan-t5-xxl",
-        quantization_config=bnb_config
     )
     base_model = prepare_model_for_kbit_training(base_model)
 
